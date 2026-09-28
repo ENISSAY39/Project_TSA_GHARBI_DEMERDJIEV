@@ -1,0 +1,98 @@
+======================================================================
+ETAPE 0 - APERCU DES DONNEES
+======================================================================
+Periode        : 2016-09-01 -> 2026-08-01
+Nb observations: 120  (frequence mensuelle, s = 12)
+Moyenne globale: 97.899   Ecart-type: 29.133
+Min / Max      : 43.779 / 153.172
+
+======================================================================
+ETAPE 1 - LE FICHIER CONTIENT DEJA trend/seasonal/residual
+======================================================================
+max|value - (T+S+R)| = 0.001000   <-- additif
+max|value - (T*S*R)| = 15388.444925   <-- multiplicatif
+S varie entre -14.392 et 12.392 (moyenne 0.0000)
+Une saisonnalite NEGATIVE et de moyenne ~0 est le signe d'un modele ADDITIF
+(en multiplicatif, S oscille autour de 1 et reste positif).
+
+======================================================================
+ETAPE 2 - TABLE DE BUYS-BALLOT (moyenne & ecart-type annuels)
+======================================================================
+       n  moyenne  ecart_type  etendue    CV_%
+date                                          
+2016   4   60.140       6.395   14.630  10.634
+2017  12   57.079       9.621   27.174  16.856
+2018  12   68.036      12.129   39.543  17.828
+2019  12   74.611      13.169   42.921  17.650
+2020  12   86.964       9.010   29.548  10.360
+2021  12   97.282       9.332   23.794   9.593
+2022  12  106.318       9.071   24.353   8.532
+2023  12  114.428      13.715   45.159  11.986
+2024  12  127.194      12.099   45.213   9.512
+2025  12  134.893      10.824   29.119   8.024
+2026   8  138.203       7.678   24.047   5.555
+
+Lecture : si l'AMPLITUDE (ecart-type, etendue) grandit avec le NIVEAU
+(moyenne) -> multiplicatif. Si elle reste stable -> additif.
+Si le COEFFICIENT DE VARIATION est stable -> multiplicatif ;
+s'il DECROIT quand le niveau monte -> additif.
+
+======================================================================
+ETAPE 3 - REGRESSION LINEAIRE  ecart_type = a + b * moyenne
+======================================================================
+Annees completes utilisees : [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
+pente b   = 0.00851   (erreur std 0.02564)
+ordonnee a= 10.1767
+r         = 0.1246    R2 = 0.0155
+p-value   = 0.7495
+
+REGLE DE DECISION :
+  b non significativement different de 0 (p > 0.05) -> ADDITIF
+  b significativement > 0                            -> MULTIPLICATIF
+  ==> ici p = 0.7495 -> pente NON significative -> ADDITIF
+[controle] etendue ~ moyenne : b = 0.03689, p = 0.7780
+
+======================================================================
+ETAPE 4 - TENDANCE : regression value = a + b * t
+======================================================================
+pente = 0.7884 par mois  (soit 9.461 par an), p = 1.66e-57, R2 = 0.886
+Tendance lineaire croissante et reguliere -> compatible avec un modele additif.
+
+======================================================================
+ETAPE 5 - COMPARAISON DES DEUX DECOMPOSITIONS (moving average)
+======================================================================
+ADDITIF        : residu moyen -0.0048, ecart-type 4.2139
+MULTIPLICATIF  : residu moyen +0.9984, ecart-type 0.0558 (autour de 1)
+Residus ramenes en unites de la serie : additif RMSE = 4.1944 | multiplicatif RMSE = 4.9670
+corr(|residu additif| , tendance) = +0.099  (p=0.309)
+Une correlation ~0 confirme que la dispersion NE depend PAS du niveau -> ADDITIF.
+
+======================================================================
+ETAPE 6 - COEFFICIENTS SAISONNIERS (modele additif retenu)
+======================================================================
+  Jan :  +8.104
+  Fev :  +3.921
+  Mar :  +2.083
+  Avr :  -3.092
+  Mai :  -9.750
+  Jun : -13.964
+  Jul : -14.344
+  Aou :  -4.900
+  Sep :  +2.669
+  Oct :  +8.671
+  Nov : +12.979
+  Dec :  +7.622
+  Somme = +0.0000 (~0 : normalisation additive OK)
+
+======================================================================
+CONCLUSION
+======================================================================
+La decomposition est ADDITIVE :  Y(t) = T(t) + S(t) + e(t)
+Arguments :
+  1. value = T+S+R a la precision machine (ecart max 1.0e-03) ;
+  2. la saisonnalite prend des valeurs negatives et somme a 0 ;
+  3. l'amplitude annuelle est stable (9.01 a 13.71)
+     alors que le niveau passe de 57.1 a 134.9 ;
+  4. regression ecart-type~moyenne : pente 0.0085, p=0.750 -> non significative ;
+  5. le CV decroit de 16.9% a 8.0%, ce qui est
+     exactement le comportement d'une amplitude FIXE sur un niveau croissant.

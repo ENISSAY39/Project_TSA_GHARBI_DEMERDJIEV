@@ -1,0 +1,20 @@
+Trois choses, dans l'ordre.
+
+1. Rends la proposition Word si ce n'est pas déjà fait — c'est le livrable du moment, le reste peut attendre.
+
+2. Ouvre la nouvelle session à la racine TP2_RS _pipeline_in _Python (pas dans Project). Le CLAUDE.md se charge tout seul.
+
+3. Démarre avec un message court, par exemple :
+
+On attaque le notebook du projet Groenland dans Project/. Étape 4 de ma roadmap. Cellule par cellule.
+
+Pas besoin de réexpliquer la bbox, les dates ou les indices — tout est dans le CLAUDE.md et la mémoire.
+
+Ce qui viendra en premier, pour que tu saches où tu vas :
+
+Cellule 1 — markdown de titre : le cas d'usage, la question à laquelle le pipeline répond
+Cellule 2 — le bloc de paramètres en tête, celui que ton prof modifiera pour relancer : bbox, les deux années, la fenêtre calendaire, les seuils NDSI/NDWI, la résolution, la couverture nuageuse max
+Cellule 3 — les identifiants et la config SentinelHub cdse, repris tels quels de la partie 1
+Ensuite seulement la vérification du catalogue (ton étape 3), puis l'evalscript NDSI.
+
+Un truc à préparer de ton côté en parallèle, parce que c'est le seul point que je ne peux pas faire à ta place : l'étape 1, la bibliographie. Trouve une ou deux références qui justifient le seuil NDSI de 0.42 — c'est typiquement la question qu'on te posera à l'oral (« pourquoi 0.42 ? »), et une réponse sourcée vaut mieux qu'un « c'est la valeur usuelle ». On pourra la chercher ensemble en début de session si tu préfères.
