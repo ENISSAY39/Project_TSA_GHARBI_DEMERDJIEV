@@ -1,0 +1,55 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:icalendar-ruby
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Europe/Paris
+BEGIN:DAYLIGHT
+DTSTART:20260329T030000
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=3
+TZNAME:CEST
+END:DAYLIGHT
+BEGIN:STANDARD
+DTSTART:20261025T020000
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=10
+TZNAME:CET
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20260910T191424Z
+UID:679e736b-cb37-4bbf-a342-f52761b6150b
+DTSTART;TZID=Europe/Paris:20260911T095000
+DTEND;TZID=Europe/Paris:20260911T100000
+CLASS:PRIVATE
+DESCRIPTION:Informations pratiques :\n* Au 3ème étage avec ascenseur\n* A
+ vec ascenseur\n* Sans entrée accessible\n\nPour annuler ou déplacer votr
+ e RDV\, cliquez sur le lien ci-dessous :\nhttps://www.doctolib.fr/guest_ac
+ cess/dddi9VTi?anonymous_origin=ics_attachment\n\nVia Doctolib
+GEO:43.6193222;3.8186566
+LOCATION:195 Rue Yves Montand\, 34080 Montpellier
+ORGANIZER;CN=Doctolib:mailto:no-reply@doctolib.fr
+PRIORITY:2
+SUMMARY:Rendez-vous chez SOS MEDECINS Montpellier Nord - Paillade
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT2H
+DESCRIPTION:Informations pratiques :\n* Au 3ème étage avec ascenseur\n* A
+ vec ascenseur\n* Sans entrée accessible\n\nPour annuler ou déplacer votr
+ e RDV\, cliquez sur le lien ci-dessous :\nhttps://www.doctolib.fr/guest_ac
+ cess/dddi9VTi?anonymous_origin=ics_attachment\n\nVia Doctolib
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P2D
+DESCRIPTION:Informations pratiques :\n* Au 3ème étage avec ascenseur\n* A
+ vec ascenseur\n* Sans entrée accessible\n\nPour annuler ou déplacer votr
+ e RDV\, cliquez sur le lien ci-dessous :\nhttps://www.doctolib.fr/guest_ac
+ cess/dddi9VTi?anonymous_origin=ics_attachment\n\nVia Doctolib
+END:VALARM
+END:VEVENT
+END:VCALENDAR
