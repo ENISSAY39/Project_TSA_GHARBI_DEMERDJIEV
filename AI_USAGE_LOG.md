@@ -50,3 +50,14 @@ Tool: Claude Code (Anthropic). One entry per major step of the notebook; minor e
   - Debugging by the AI: the default estimation of the initial states converged to absurd values for the additive models, so the heuristic initialisation is used; the simulated prediction interval changed from one run to the next until the random generator was seeded.
   - The AI ran the notebook twice to check that the results are identical and that the figures quoted in the text match the outputs.
 - **How the student used or modified it:** _to be completed by the student_
+
+---
+
+## 2026-10-01 — Step 5: Section 5 (SARIMA)
+
+- **Major prompt (verbatim):** "ok push and next : 5- SARIMA and 6- Prophet"
+- **What was produced:**
+  - Section 5, code and draft interpretations: ACF and PACF of the twice-differenced training series, comparison of 36 SARIMA models by AIC and BIC, coefficient table, residual diagnostics, and the 24-month forecast with its prediction interval.
+  - Methodological proposals made by the AI: reading the correlograms first (MA(2) and seasonal MA(1)) and then checking that reading against a grid of neighbouring models, which added a seasonal AR term; leaving out the first 13 residuals and correcting the Ljung-Box test for the four ARMA terms.
+  - The AI ran the notebook to check that the figures quoted in the text match the outputs.
+- **How the student used or modified it:** _to be completed by the student_
