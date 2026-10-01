@@ -6,25 +6,26 @@ Academic project (EPF Montpellier, Data & AI). Goal: forecast a univariate time 
 **Before starting any task, read the files in `Contexte/`** (assignment brief, course material). They define the requirements; if they conflict with this file, `Contexte/` wins — flag the conflict.
 
 ## Dataset
-- File: `MRTSSM4453USN.csv` (project root — do not move or modify it)
-- Series: **Retail Sales: Beer, Wine, and Liquor Stores (US)** — millions of dollars, **not seasonally adjusted**
-- Source: U.S. Census Bureau, retrieved from FRED: https://fred.stlouisfed.org/series/MRTSSM4453USN
-- Download (no API key needed): https://fred.stlouisfed.org/graph/fredgraph.csv?id=MRTSSM4453USN
-- Frequency: **monthly**, 1992-01 → 2026-07 (~415 observations, no missing values)
-- CSV columns: `observation_date`, `MRTSSM4453USN` → parse dates, set a monthly DatetimeIndex (`freq="MS"`).
-- Report citation: "U.S. Census Bureau, Retail Sales: Beer, Wine, and Liquor Stores [MRTSSM4453USN], retrieved from FRED, Federal Reserve Bank of St. Louis."
+- File: `MRTSSM451USN.csv` (project root — do not move or modify it). Checked against the FRED download on 2026-10-01: identical.
+- Series: **Retail Sales: Sporting Goods, Hobby, Musical Instrument, and Book Stores (US)** — millions of dollars, **not seasonally adjusted**
+- Source: U.S. Census Bureau, retrieved from FRED: https://fred.stlouisfed.org/series/MRTSSM451USN
+- Download (no API key needed): https://fred.stlouisfed.org/graph/fredgraph.csv?id=MRTSSM451USN
+- Frequency: **monthly**, 1992-01 → 2026-07 (415 observations, no missing values)
+- CSV columns: `observation_date`, `MRTSSM451USN` → parse dates, set a monthly DatetimeIndex (`freq="MS"`).
+- Report citation: "U.S. Census Bureau, Retail Sales: Sporting Goods, Hobby, Musical Instrument, and Book Stores [MRTSSM451USN], retrieved from FRED, Federal Reserve Bank of St. Louis."
 
 ### Implications for the methods
-- **Strong yearly seasonality (period = 12)** with a December peak, plus a strong upward trend.
-- **Additive vs multiplicative**: seasonal amplitude grows with the level → test both, or log-transform then additive. Justify the choice.
+- **Strong yearly seasonality (period = 12)**: December is the yearly maximum in all 34 complete years (1992–2025), with a secondary bump in August.
+- **The trend is not a steady rise**: annual sales grow until 2007, dip in 2008–09, plateau until 2016, decline in 2017–19, then step up by about 23% in 2021 and stay flat since.
+- **Additive vs multiplicative**: do not assume multiplicative. December's share of annual sales fell from about 16.5% (1992–2000) to about 12% (2021–2025), so the seasonal amplitude has not grown in proportion to the level → test both (Buys-Ballot), or log-transform then additive. Justify the choice.
 - **ETS**: seasonal decomposition (`seasonal_decompose` / STL, period=12) + ETS model with seasonal term (Holt-Winters).
 - **SARIMA** (not plain ARIMA): seasonal differencing (D) and seasonal orders (P,D,Q,12).
 - **Prophet**: yearly seasonality on (weekly/daily off), `seasonality_mode` additive vs multiplicative.
 - **Test horizon**: last 12–24 months. Seasonal naive baseline is mandatory.
-- **Structural events** (verify before citing): 2008–09 recession, COVID-19 shock in 2020, post-COVID inflation. Link anomalies and changepoints to these events.
+- **Structural events** (verify before citing): 2008–09 recession, COVID-19 shock in 2020 (April 2020 = 3,264 vs 5,887 in April 2019), level shift in 2021, post-COVID inflation. Link anomalies and changepoints to these events.
 
 ### Business context
-Retail planning for alcohol retailers and distributors: inventory and supply-chain planning ahead of holiday peaks, staffing, cash-flow forecasting, excise tax revenue estimates for public authorities. Every interpretation should connect to at least one of these.
+Retail planning for sporting goods, hobby, musical instrument and book retailers and their suppliers: inventory and supply-chain planning ahead of the December peak, seasonal staffing, cash-flow forecasting, sector monitoring (lenders, commercial landlords, sales-tax receipts for public authorities). Every interpretation should connect to at least one of these.
 
 ## Required methods
 1. ETS decomposition + ETS / Holt-Winters forecast
@@ -44,8 +45,8 @@ Never leave a plot or test result uninterpreted. Say so explicitly when a result
 Project/
 ├── CLAUDE.md
 ├── Contexte/             # assignment brief & reference material (read-only)
-├── MRTSSM4453USN.csv     # raw data (read-only)
-├── tsa_report.ipynb      # main deliverable
+├── MRTSSM451USN.csv      # raw data (read-only)
+├── Project_TSA_Gharbi_Yassine.ipynb   # main deliverable
 ├── AI_USAGE_LOG.md
 └── requirements.txt
 ```
@@ -81,13 +82,19 @@ Project/
 - One step per code cell; short, readable cells.
 
 ## AI-usage log (mandatory)
-Maintain `AI_USAGE_LOG.md` at project root. After each significant contribution (generated code, methodological choice, interpretation help, debugging), append:
+Maintain `AI_USAGE_LOG.md` at project root. **One entry per major step** (same granularity as the pushes below), not one per prompt. Each entry contains:
 - Date
-- Prompt (verbatim if short, otherwise summarized)
-- What was produced
+- Major prompts (verbatim if short, otherwise summarized)
+- What was produced (generated code, methodological choices, interpretation help, debugging)
 - How the student used or modified it
 
-Minor edits (typos, formatting) are not logged.
+Minor edits (typos, formatting, corrections, follow-up fixes) are not logged; at most, amend the entry of the current step.
+
+## Git workflow
+- **One commit and one push per major step**, 9 pushes in total: the introduction and Section 1 together, then one per section from 2 to 9. No push for intermediate edits.
+- Commit and push only when the student asks, on `main`.
+- Before each push, make sure `AI_USAGE_LOG.md` has the entry for that step.
+- **Do not add Claude as co-author**: no `Co-Authored-By` line and no "Generated with" line in commit messages.
 
 ## How Claude should work
 - Explain every choice (decomposition type, SARIMA orders, Prophet parameters…) so the student can defend it orally.
