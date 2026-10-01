@@ -61,3 +61,14 @@ Tool: Claude Code (Anthropic). One entry per major step of the notebook; minor e
   - Methodological proposals made by the AI: reading the correlograms first (MA(2) and seasonal MA(1)) and then checking that reading against a grid of neighbouring models, which added a seasonal AR term; leaving out the first 13 residuals and correcting the Ljung-Box test for the four ARMA terms.
   - The AI ran the notebook to check that the figures quoted in the text match the outputs.
 - **How the student used or modified it:** _to be completed by the student_
+
+---
+
+## 2026-10-01 — Step 6: Section 6 (Prophet)
+
+- **Major prompt (verbatim):** "ok push and next : 5- SARIMA and 6- Prophet" (same prompt as Step 5)
+- **What was produced:**
+  - Section 6, code and draft interpretations: choice of the Prophet settings by a rolling-origin validation inside the training set, trend and yearly component, changepoints compared with the NBER recessions, residual diagnostics, and the 24-month forecast with its uncertainty interval.
+  - Methodological proposals made by the AI: choosing the settings by rolling-origin validation, since Prophet has no AIC; extending `changepoint_range` to 0.95 as a candidate so that changepoints can be placed after 2017; comparing Prophet's yearly effect with the seasonal coefficients of the decomposition; reporting plainly that Prophet over-forecasts and that its interval covers only 15 of the 24 test months.
+  - The AI installed `prophet`, silenced its log messages, fixed the random seed of the simulated interval and ran the notebook twice to check that the results are identical and that the figures quoted in the text match the outputs.
+- **How the student used or modified it:** _to be completed by the student_
