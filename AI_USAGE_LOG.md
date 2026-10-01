@@ -38,3 +38,15 @@ Tool: Claude Code (Anthropic). One entry per major step of the notebook; minor e
   - Methodological proposals made by the AI: reading the two tests jointly; adding the lag-12 autocorrelation and the standard deviation because ADF and KPSS do not detect a seasonal pattern; repeating the tests without the 2020–2021 shock, which is what separates D = 1 alone from d = 1, D = 1; keeping the series in original units (no log).
   - The AI installed `statsmodels`, created `requirements.txt` and ran the notebook to check that the figures quoted in the text match the outputs.
 - **How the student used or modified it:** _to be completed by the student_
+
+---
+
+## 2026-10-01 — Step 4: Section 4 (ETS: decomposition and Holt-Winters)
+
+- **Major prompt (verbatim):** "ok push and next ETS 4- decomposition and holt-winners"
+- **What was produced:**
+  - Section 4, code and draft interpretations: band procedure, Buys-Ballot table and test, analysis of variance, additive and multiplicative decompositions, seasonal coefficients and conservation principle, nine ETS candidates compared by AIC and BIC, residual diagnostics, and the 24-month forecast with its prediction interval. Two helpers (`residual_diagnostics`, `plot_forecast` / `forecast_check`) are written to be reused in Sections 5 and 6.
+  - Methodological proposals made by the AI: comparing nine ETS models rather than only the additive and multiplicative Holt-Winters, which led to ETS(M,A,A); expressing the residuals of that model in percent of the fitted value; judging the forecast on the two Decembers and on each year of the test period.
+  - Debugging by the AI: the default estimation of the initial states converged to absurd values for the additive models, so the heuristic initialisation is used; the simulated prediction interval changed from one run to the next until the random generator was seeded.
+  - The AI ran the notebook twice to check that the results are identical and that the figures quoted in the text match the outputs.
+- **How the student used or modified it:** _to be completed by the student_
