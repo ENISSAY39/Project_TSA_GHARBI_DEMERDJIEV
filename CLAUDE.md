@@ -17,11 +17,11 @@ Academic project (EPF Montpellier, Data & AI). Goal: forecast a univariate time 
 ### Implications for the methods
 - **Strong yearly seasonality (period = 12)**: December is the yearly maximum in all 34 complete years (1992–2025), with a secondary bump in August.
 - **The trend is not a steady rise**: annual sales grow until 2007, dip in 2008–09, plateau until 2016, decline in 2017–19, then step up by about 23% in 2021 and stay flat since.
-- **Additive vs multiplicative**: do not assume multiplicative. December's share of annual sales fell from about 16.5% (1992–2000) to about 12% (2021–2025), so the seasonal amplitude has not grown in proportion to the level → test both (Buys-Ballot), or log-transform then additive. Justify the choice.
+- **Additive vs multiplicative**: do not assume multiplicative. December's share of annual sales fell from about 16.5% (1992–2000) to about 12% (2021–2025), so the seasonal amplitude has not grown in proportion to the level. The EDA (Section 2.4) shows a 12-month rolling standard deviation that stays around 1,200–1,600 while the rolling mean is multiplied by 2.6: additive is the leading candidate → confirm with the band procedure and the Buys-Ballot test on the training set (Section 4). Justify the choice.
 - **ETS**: seasonal decomposition (`seasonal_decompose` / STL, period=12) + ETS model with seasonal term (Holt-Winters).
 - **SARIMA** (not plain ARIMA): seasonal differencing (D) and seasonal orders (P,D,Q,12).
 - **Prophet**: yearly seasonality on (weekly/daily off), `seasonality_mode` additive vs multiplicative.
-- **Test horizon**: last 12–24 months. Seasonal naive baseline is mandatory.
+- **Test horizon**: last 24 months (`TEST_HORIZON = 24`, set in Section 2.5): train = 1992-01 → 2024-07 (391 months), test = 2024-08 → 2026-07 (two Decembers). Seasonal naive baseline is mandatory.
 - **Structural events** (verify before citing): 2008–09 recession, COVID-19 shock in 2020 (April 2020 = 3,264 vs 5,887 in April 2019), level shift in 2021, post-COVID inflation. Link anomalies and changepoints to these events.
 
 ### Business context
