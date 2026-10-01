@@ -83,3 +83,11 @@ Tool: Claude Code (Anthropic). One entry per major step of the notebook; minor e
   - Methodological proposals made by the AI: RMSE as the main criterion for this business case; adding the mean error to show the direction of the errors; the rolling-origin evaluation, which shows that the test ranking is partly circumstantial; recommending ETS as the main forecast with SARIMA as a second opinion and the seasonal naive as a benchmark.
   - The AI ran the notebook to check that the figures quoted in the text match the outputs.
 - **How the student used or modified it:** _to be completed by the student_
+
+---
+
+## 2026-10-01 — Step 8: Section 8 (conclusion)
+
+- **Major prompt (verbatim):** "ok push and next do comparaison and conclusion" (same prompt as Step 7)
+- **What was produced:** a draft of Section 8, text only: key findings, answer to the business question, business recommendations, limits and possible improvements. Every figure quoted is taken from the outputs of Sections 1 to 7. The limits and improvements were proposed by the AI from what the analysis showed (single test period, shock not modelled, AIC against a 24-month horizon, approximate intervals, unverified causes).
+- **How the student used or modified it:** _to be completed by the student_
