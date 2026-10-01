@@ -27,3 +27,14 @@ Tool: Claude Code (Anthropic). One entry per major step of the notebook; minor e
   - Methodological proposals made by the AI: a 24-month test horizon (two Decembers) rather than 12; reading the stable rolling standard deviation as a sign of an additive structure, to be confirmed in Section 4; moving the band procedure, the Buys-Ballot table and the analysis of variance to Section 4, so that they are run on the training set.
   - The AI checked the NBER recession dates on the NBER website and ran the notebook to check that the figures quoted in the text match the outputs.
 - **How the student used or modified it:** _to be completed by the student_
+
+---
+
+## 2026-10-01 — Step 3: Section 3 (stationarity)
+
+- **Major prompt (verbatim):** "okay push and next step 3. **Stationarity** — ADF + KPSS, regular and seasonal differencing"
+- **What was produced:**
+  - Section 3, code and draft interpretations: a helper running ADF and KPSS together, tests on the series in level (around a constant and around a linear trend), plot and tests of the three differencing candidates (d = 1, D = 1, both), a robustness check on the training data before 2020, and the conclusion d = 1, D = 1.
+  - Methodological proposals made by the AI: reading the two tests jointly; adding the lag-12 autocorrelation and the standard deviation because ADF and KPSS do not detect a seasonal pattern; repeating the tests without the 2020–2021 shock, which is what separates D = 1 alone from d = 1, D = 1; keeping the series in original units (no log).
+  - The AI installed `statsmodels`, created `requirements.txt` and ran the notebook to check that the figures quoted in the text match the outputs.
+- **How the student used or modified it:** _to be completed by the student_
