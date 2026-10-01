@@ -72,3 +72,14 @@ Tool: Claude Code (Anthropic). One entry per major step of the notebook; minor e
   - Methodological proposals made by the AI: choosing the settings by rolling-origin validation, since Prophet has no AIC; extending `changepoint_range` to 0.95 as a candidate so that changepoints can be placed after 2017; comparing Prophet's yearly effect with the seasonal coefficients of the decomposition; reporting plainly that Prophet over-forecasts and that its interval covers only 15 of the 24 test months.
   - The AI installed `prophet`, silenced its log messages, fixed the random seed of the simulated interval and ran the notebook twice to check that the results are identical and that the figures quoted in the text match the outputs.
 - **How the student used or modified it:** _to be completed by the student_
+
+---
+
+## 2026-10-01 — Step 7: Section 7 (comparison of the forecasts)
+
+- **Major prompt (verbatim):** "ok push and next do comparaison and conclusion"
+- **What was produced:**
+  - Section 7, code and draft interpretations: naive and seasonal naive baselines, metrics table (MAE, MSE, RMSE, MAPE, mean error) with a breakdown by year and by December, overlaid forecasts and forecast errors, rolling-origin evaluation of the five methods inside the training set, comparison of the prediction intervals, summary table and discussion.
+  - Methodological proposals made by the AI: RMSE as the main criterion for this business case; adding the mean error to show the direction of the errors; the rolling-origin evaluation, which shows that the test ranking is partly circumstantial; recommending ETS as the main forecast with SARIMA as a second opinion and the seasonal naive as a benchmark.
+  - The AI ran the notebook to check that the figures quoted in the text match the outputs.
+- **How the student used or modified it:** _to be completed by the student_
