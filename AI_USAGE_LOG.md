@@ -1,5 +1,7 @@
 # AI usage log
 
+Authors: Yassine Gharbi and Martin Demerdjiev. The project was done by the two of us, working together on one computer (Yassine's), which is why every commit comes from a single account, with Martin as co-author.
+
 Tool: Claude Code (Anthropic). One entry per major step of the notebook; minor edits (typos, formatting, corrections) are not logged.
 
 ---
